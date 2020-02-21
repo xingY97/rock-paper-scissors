@@ -18,12 +18,13 @@ class ResultsViewController: UIViewController {
     
     @IBOutlet weak var labelResult: UILabel!
     
+    let randomOption = GameOption.init()
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        let randomOption = GameOption.init()
-        
+                
         switch randomOption {
         case .rock:
             resultImage.image = UIImage(named: "rock")
@@ -31,19 +32,25 @@ class ResultsViewController: UIViewController {
             resultImage.image = UIImage(named: "paper")
         case .scissors:
             resultImage.image = UIImage(named: "scissors")
+            
+            
         }
-        
+        updateLabel()
+    }
         
         //TODO: Depending on the result, show the legend "You won", "You lost", "It's a tie" in the label
-        if userSelection == randomOption {
-            labelResult.text = "tie"
-        }else if userSelection.weakness == randomOption {
-            labelResult.text = "you lose"
-        }else  {
-            labelResult.text = "you win"
+        func updateLabel(){
+            if userSelection == randomOption {
+                labelResult.text = "tie"
+            }else if userSelection.weakness == randomOption {
+                labelResult.text = "you lose"
+            }else  {
+                labelResult.text = "you win"
+            }
         }
+
     }
-}
+
 
 //enum GameOption: Int, CaseIterable{
 //    case rock = 0
